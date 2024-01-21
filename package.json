@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Tjanelidze/Natours-Project/issues"
   },
-  "homepage": "https://github.com/Tjanelidze/Natours-Project#readme"
+  "homepage": "https://github.com/Tjanelidze/Natours-Project#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
