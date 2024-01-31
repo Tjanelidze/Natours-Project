@@ -26,6 +26,7 @@ const tours = JSON.parse(
 );
 
 // IMPORT DATA INTO DB
+
 const importData = async () => {
   try {
     await Tour.create(tours);
