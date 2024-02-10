@@ -28,7 +28,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
+    passwordConfirm: req.body.passwordConfirm,
     passChangeAt: req.body.passChangeAt,
     role: req.body.role,
   });
@@ -122,7 +122,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 3) Send it to user's email
   const resetURL = `${req.protocol}://${req.get('host')}/api/v1/users/resetPassword/${resetToken}`;
 
-  const message = `Forgot your password? Submit a PATCH request with your new password and confirmPassword to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
+  const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}.\nIf you didn't forget your password, please ignore this email!`;
 
   try {
     await sendEmail({
@@ -162,7 +162,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   if (!user) return next(new AppError('Token is invalid or has expired', 400));
 
   user.password = req.body.password;
-  user.confirmPassword = req.body.confirmPassword;
+  user.passwordConfirm = req.body.passwordConfirm;
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();
@@ -183,7 +183,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   // 3) If wso, update password
   user.password = req.body.password;
-  user.confirmPassword = req.body.confirmPassword;
+  user.passwordConfirm = req.body.passwordConfirm;
   await user.save();
 
   // 4) Log user in, send JWT

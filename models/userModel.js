@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  confirmPassword: {
+  passwordConfirm: {
     type: String,
     requried: [true, 'Please confirm your password'],
     validate: {
@@ -51,8 +51,8 @@ userSchema.pre('save', async function (next) {
   // Hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
 
-  // Delete confirmPassword field
-  this.confirmPassword = undefined;
+  // Delete passwordConfirm field
+  this.passwordConfirm = undefined;
   next();
 });
 
