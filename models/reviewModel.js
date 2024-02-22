@@ -4,7 +4,7 @@ const reviewSchema = new mongoose.Schema(
   {
     review: {
       type: String,
-      reqired: [true, 'Review can not be empty!'],
+      reqired: [true, 'Review casn not be empty!'],
     },
     rating: {
       type: Number,
@@ -34,9 +34,6 @@ const reviewSchema = new mongoose.Schema(
 
 reviewSchema.pre(/^find/, function (next) {
   this.populate({
-    path: 'tour',
-    select: 'name',
-  }).populate({
     path: 'user',
     select: 'name photo',
   });
