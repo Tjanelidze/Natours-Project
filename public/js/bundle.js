@@ -12027,7 +12027,7 @@ var login = exports.login = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/v1/users/login',
+            url: 'http://localhost:3000/api/v1/users/login',
             data: {
               email: email,
               password: password
@@ -12068,7 +12068,7 @@ var logout = exports.logout = /*#__PURE__*/function () {
           _context2.next = 3;
           return (0, _axios.default)({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/v1/users/logout'
+            url: 'http://localhost:3000/api/v1/users/logout'
           });
         case 3:
           res = _context2.sent;
