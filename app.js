@@ -49,8 +49,16 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [],
-      connectSrc: ["'self'", ...connectSrcUrls],
-      scriptSrc: ["'self'", ...scriptSrcUrls],
+      connectSrc: [
+        "'self'",
+        'https://cdnjs.cloudflare.com',
+        'ws://localhost:45617',
+      ],
+      scriptSrc: [
+        "'self'",
+        ...scriptSrcUrls,
+        'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+      ],
       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
       workerSrc: ["'self'", 'blob:'],
       objectSrc: [],
@@ -59,7 +67,6 @@ app.use(
     },
   }),
 );
-
 // Development logging
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
